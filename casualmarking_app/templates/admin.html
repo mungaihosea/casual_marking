@@ -1,0 +1,96 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="alert alert-primary" role="alert">
+    welcome {{request.user.username}} to the administrative dashboard<br>
+    You can use this dashboard to create user accounts for lecturers and students.
+</div>
+{% if success %}
+<div class="alert alert-success">
+    {{success}}
+</div>
+{% endif %}
+
+<div class="row" style="width: 100%; text-align: center;">
+
+    <div class="card col" style="width: 18rem;">
+        <img style="height: 200px;object-fit: contain;background-color: rgba(128, 128, 128, 0.459)" src="https://marvel-b1-cdn.bc0a.com/f00000000026007/resilienteducator.com/wp-content/uploads/sites/34/2014/11/math-teacher.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Create a lecturer account</h5>
+        <p class="card-text">A lecturer account can be used to mark submitted assignments within the system</p>
+        <a data-bs-toggle="modal" data-bs-target="#addmarker" class="btn btn-primary">Create</a>
+        </div>
+    </div>
+    <div class="card col m-10" style="width: 18rem;">
+        <img style="height: 200px;object-fit: contain;background-color: rgba(128, 128, 128, 0.459);" src="https://media.istockphoto.com/photos/handsome-afro-student-posing-on-bookshelves-background-picture-id1171062918?k=6&m=1171062918&s=612x612&w=0&h=xbCfbDhHWA4S_EG5USBJs39S4SzpT8l3qAm-n5Jm-88=" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Create a student Account</h5>
+        <p class="card-text">A student account will allow student to submit assignments for marking</p>
+        <a data-bs-toggle="modal" data-bs-target="#addstudent" class="btn btn-primary">Create</a>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Add marker Modal -->
+<div class="modal fade" id="addmarker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a lecturer / marker</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{% url 'create_marker' %}" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Lecturer Username</label>
+                  <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Repeat password</label>
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                  </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Student Modal -->
+<div class="modal fade" id="addstudent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add student</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{% url 'create_student' %}" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Student Username</label>
+                  <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Repeat password</label>
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                  </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+        
+        </div>
+    </div>
+</div>
+{% endblock content %}
