@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+
+{% block content %} 
+<div class="alert alert-primary">
+    Welcome {{request.user.username}} to your dashboard <br>
+    you can use this Dashboard to mark assignments submited by students
+</div>
+<ul class="list-group">
+    <li class="list-group-item">the first assignment <i class="fa fa-check" style="color: rgba(0, 0, 255, 0.692);" aria-hidden="true"> marked</i> <button style="float:right" class="btn btn-primary">set to marked</button><br>
+        attachment: file<br>
+        Submitted on: 10/20/2021
+    </li>
+    <li class="list-group-item">the first assignment <i class="fa fa-clock-o" style="color: grey;" aria-hidden="true"> not marked</i> <button style="float:right" class="btn btn-primary">view</button><br>
+        attachment: file<br>
+        Submitted on: 10/20/2021
+    </li>
+    
+</ul>
+<span class="badge badge-pill badge-dark">Dark</span>
+{% endblock content %}

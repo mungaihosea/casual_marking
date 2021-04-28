@@ -27,6 +27,7 @@ class Task(models.Model):
     marker = models.ForeignKey(Marker, on_delete = models.CASCADE)
     date_uploaded = models.DateTimeField(auto_now_add = True)
     attachment = models.FileField(upload_to = 'attachments', null = True)
+    marked = models.BooleanField(default = False)
 
     def __str__(self):
         return self.title
